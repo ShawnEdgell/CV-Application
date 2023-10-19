@@ -11,9 +11,12 @@ function App() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [location, setLocation] = useState('');
-  const [experience, setExperience] = useState('');
-  const [skills, setSkills] = useState('');
-  const [projects, setProjects] = useState('');
+  const [companyName, setCompanyName] = useState('');
+  const [positionTitle, setPositionTitle] = useState('');
+  const [experienceStartDate, setExperienceStartDate] = useState('');
+  const [experienceEndDate, setExperienceEndDate] = useState('');
+  const [experienceLocation, setExperienceLocation] = useState('');
+  const [experienceDescription, setExperienceDescription] = useState('');
 
   return (
     <div className="cv-app">
@@ -90,33 +93,43 @@ function App() {
           <h3>Experience</h3>
           <input
             type="text"
-            placeholder="Experience"
-            value={experience}
-            onChange={(e) => setExperience(e.target.value)}
+            placeholder="Company Name"
+            value={companyName}
+            onChange={(e) => setCompanyName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Position Title"
+            value={positionTitle}
+            onChange={(e) => setPositionTitle(e.target.value)}
+          />
+          <div className="experience-dates">
+            <input
+              type="text"
+              placeholder="Start Date"
+              value={experienceStartDate}
+              onChange={(e) => setExperienceStartDate(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="End Date"
+              value={experienceEndDate}
+              onChange={(e) => setExperienceEndDate(e.target.value)}
+            />
+          </div>
+          <input
+            type="text"
+            placeholder="Location"
+            value={experienceLocation}
+            onChange={(e) => setExperienceLocation(e.target.value)}
+          />
+          <textarea
+            placeholder="Description (optional)"
+            value={experienceDescription}
+            onChange={(e) => setExperienceDescription(e.target.value)}
           />
         </div>
 
-        {/* Skills */}
-        <div className="section">
-          <h3>Skills</h3>
-          <input
-            type="text"
-            placeholder="Skills"
-            value={skills}
-            onChange={(e) => setSkills(e.target.value)}
-          />
-        </div>
-
-        {/* Projects */}
-        <div className="section">
-          <h3>Projects</h3>
-          <input
-            type="text"
-            placeholder="Projects"
-            value={projects}
-            onChange={(e) => setProjects(e.target.value)}
-          />
-        </div>
       </div>
 
       {/* Right side: Display user input */}
@@ -135,13 +148,18 @@ function App() {
         <p>Location: {location}</p>
 
         <h2>Experience</h2>
-        <p>{experience}</p>
+        <p>Company Name: {companyName}</p>
+        <p>Position Title: {positionTitle}</p>
+        <p>Start Date: {experienceStartDate}</p>
+        <p>End Date: {experienceEndDate}</p>
+        <p>Location: {experienceLocation}</p>
+        {experienceDescription && (
+          <div className="description">
+            <h3>Description</h3>
+            <p>{experienceDescription}</p>
+          </div>
+        )}
 
-        <h2>Skills</h2>
-        <p>{skills}</p>
-
-        <h2>Projects</h2>
-        <p>{projects}</p>
       </div>
     </div>
   );
