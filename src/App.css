@@ -1,39 +1,56 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure the body covers the viewport height */
 }
 
 .cv-app {
   display: flex;
-  justify-content: space-around;
 }
 
-.left-side, .right-side {
-  width: 40%;
-  display: flex;
-  flex-direction: column;
+.right-side, .left-side {
+  width: 612px;
+  height: 792px;
   padding: 20px;
   background-color: antiquewhite;
-  border: 5px solid black;
+  border: 1px solid black;
+  box-sizing: border-box;
 }
 
-h3 {
-  margin: 0;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ccc;
+/* Common styles for all DPIs */
+.left-side {
+  width: 50%;
+  overflow-y: scroll; /* Add vertical scrollbar when needed */
 }
 
-input[type="text"], textarea {
+.right-side {
+  width: 50%;
+  overflow: hidden;
+}
+
+.right-side {
+  overflow: hidden;
+}
+
+.left-side {
+  overflow: scroll;
+}
+
+input[type="text"],
+textarea {
   width: 100%;
+  box-sizing: border-box;
 }
 
-.education-dates, .experience-dates {
+.education-dates,
+.experience-dates {
   display: flex;
   justify-content: space-between;
 }
