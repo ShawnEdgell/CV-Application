@@ -266,6 +266,7 @@ function App() {
               <div className="description">
                 <h4>Description</h4>
                 <p>{experience.description}</p>
+                <br></br>
               </div>
             )}
           </div>
