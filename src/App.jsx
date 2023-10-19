@@ -1,35 +1,73 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [name, setName] = useState('');
+  const [contact, setContact] = useState('');
+  const [education, setEducation] = useState('');
+  const [experience, setExperience] = useState('');
+  const [skills, setSkills] = useState('');
+  const [projects, setProjects] = useState('');
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="cv-app">
+      {/* Left side: Input fields */}
+      <div className="left-side">
+        <input
+          type="text"
+          placeholder="Your Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Contact Information"
+          value={contact}
+          onChange={(e) => setContact(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Education"
+          value={education}
+          onChange={(e) => setEducation(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Experience"
+          value={experience}
+          onChange={(e) => setExperience(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Skills"
+          value={skills}
+          onChange={(e) => setSkills(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Projects"
+          value={projects}
+          onChange={(e) => setProjects(e.target.value)}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      {/* Right side: Display user input */}
+      <div className="right-side">
+        <h2>Name</h2>
+        <p>{name}</p>
+        <h2>Contact</h2>
+        <p>{contact}</p>
+        <h2>Education</h2>
+        <p>{education}</p>
+        <h2>Experience</h2>
+        <p>{experience}</p>
+        <h2>Skills</h2>
+        <p>{skills}</p>
+        <h2>Projects</h2>
+        <p>{projects}</p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
