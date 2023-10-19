@@ -6,7 +6,11 @@ function App() {
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [education, setEducation] = useState('');
+  const [school, setSchool] = useState('');
+  const [degree, setDegree] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [location, setLocation] = useState('');
   const [experience, setExperience] = useState('');
   const [skills, setSkills] = useState('');
   const [projects, setProjects] = useState('');
@@ -49,9 +53,35 @@ function App() {
           <h3>Education</h3>
           <input
             type="text"
-            placeholder="Education"
-            value={education}
-            onChange={(e) => setEducation(e.target.value)}
+            placeholder="School"
+            value={school}
+            onChange={(e) => setSchool(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Degree"
+            value={degree}
+            onChange={(e) => setDegree(e.target.value)}
+          />
+          <div className="education-dates">
+            <input
+              type="text"
+              placeholder="Start Date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="End Date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
+          </div>
+          <input
+            type="text"
+            placeholder="Location"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
           />
         </div>
 
@@ -98,7 +128,11 @@ function App() {
         <p>Phone Number: {phoneNumber}</p>
 
         <h2>Education</h2>
-        <p>{education}</p>
+        <p>School: {school}</p>
+        <p>Degree: {degree}</p>
+        <p>Start Date: {startDate}</p>
+        <p>End Date: {endDate}</p>
+        <p>Location: {location}</p>
 
         <h2>Experience</h2>
         <p>{experience}</p>
