@@ -1,43 +1,97 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+  const defaultTemplate = {
+    name: 'John Smith',
+    address: '123 Example Street',
+    email: 'john@example.com',
+    phoneNumber: '123-456-7890',
+    educations: [
+      {
+        school: 'Example University',
+        degree: 'Bachelor of Science',
+        startDate: '2000',
+        endDate: '2004',
+        location: 'Example City',
+      },
+    ],
+    experiences: [
+      {
+        companyName: 'Example Company',
+        positionTitle: 'Software Engineer',
+        startDate: '2005',
+        endDate: '2010',
+        location: 'Example City',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
+    ],
+  };
+
+  // Initialize state with default template values
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [educations, setEducations] = useState([]); // Array to store Education data
-  const [experiences, setExperiences] = useState([]); // Array to store Experience data
+  const [educations, setEducations] = useState([]);
+  const [experiences, setExperiences] = useState([]);
 
-  // Function to add an education to the array
+  useEffect(() => {
+    setName(defaultTemplate.name);
+    setAddress(defaultTemplate.address);
+    setEmail(defaultTemplate.email);
+    setPhoneNumber(defaultTemplate.phoneNumber);
+    setEducations([...defaultTemplate.educations]);
+    setExperiences([...defaultTemplate.experiences]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const addEducation = () => {
     setEducations([...educations, {}]);
   };
 
-  // Function to remove an education from the array
   const removeEducation = (index) => {
     const updatedEducations = [...educations];
     updatedEducations.splice(index, 1);
     setEducations(updatedEducations);
   };
 
-  // Function to add an experience to the array
   const addExperience = () => {
     setExperiences([...experiences, {}]);
   };
 
-  // Function to remove an experience from the array
   const removeExperience = (index) => {
     const updatedExperiences = [...experiences];
     updatedExperiences.splice(index, 1);
     setExperiences(updatedExperiences);
   };
 
+  const addTemplate = () => {
+    setName(defaultTemplate.name);
+    setAddress(defaultTemplate.address);
+    setEmail(defaultTemplate.email);
+    setPhoneNumber(defaultTemplate.phoneNumber);
+    setEducations([...defaultTemplate.educations]);
+    setExperiences([...defaultTemplate.experiences]);
+  };
+
+  const clearTemplate = () => {
+    setName('');
+    setAddress('');
+    setEmail('');
+    setPhoneNumber('');
+    setEducations([]);
+    setExperiences([]);
+  };
+
   return (
     <div className="cv-app">
-      {/* Left side: Input fields */}
       <div className="left-side">
-        {/* Personal Details */}
+        <div className="section">
+          <h3>Template Actions</h3>
+          <button onClick={addTemplate}>Add Template</button>
+          <button onClick={clearTemplate}>Clear Template</button>
+        </div>
         <div className="section">
           <h3>Personal Details</h3>
           <input
@@ -66,7 +120,6 @@ function App() {
           />
         </div>
 
-        {/* Education */}
         <div className="section">
           <h3>Education</h3>
           {educations.map((education, index) => (
@@ -144,7 +197,6 @@ function App() {
           <button onClick={() => addEducation()}>Add Education</button>
         </div>
 
-        {/* Experience */}
         <div className="section">
           <h3>Experience</h3>
           {experiences.map((experience, index) => (
@@ -237,34 +289,32 @@ function App() {
 
       {/* Right side: Display user input */}
       <div className="right-side">
-        <h2>Personal Details</h2>
-        <p>Name: {name}</p>
-        <p>Address: {address}</p>
-        <p>Email: {email}</p>
-        <p>Phone Number: {phoneNumber}</p>
+        <p>{name}</p>
+        <p>{address}</p>
+        <p>{email}</p>
+        <p>{phoneNumber}</p>
 
         <h2>Education</h2>
         {educations.map((education, index) => (
           <div key={index}>
-            <p>School: {education.school}</p>
-            <p>Degree: {education.degree}</p>
-            <p>Start Date: {education.startDate}</p>
-            <p>End Date: {education.endDate}</p>
-            <p>Location: {education.location}</p>
+            <p>{education.school}</p>
+            <p>{education.degree}</p>
+            <p>{education.startDate}</p>
+            <p>{education.endDate}</p>
+            <p>{education.location}</p>
           </div>
         ))}
 
         <h2>Experience</h2>
         {experiences.map((experience, index) => (
           <div key={index}>
-            <p>Company Name: {experience.companyName}</p>
-            <p>Position Title: {experience.positionTitle}</p>
-            <p>Start Date: {experience.startDate}</p>
-            <p>End Date: {experience.endDate}</p>
-            <p>Location: {experience.location}</p>
+            <p>{experience.companyName}</p>
+            <p>{experience.positionTitle}</p>
+            <p>{experience.startDate}</p>
+            <p>{experience.endDate}</p>
+            <p>{experience.location}</p>
             {experience.description && (
               <div className="description">
-                <h4>Description</h4>
                 <p>{experience.description}</p>
                 <br></br>
               </div>

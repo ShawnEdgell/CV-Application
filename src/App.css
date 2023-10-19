@@ -5,42 +5,41 @@
 }
 
 body {
+  height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Ensure the body covers the viewport height */
+  padding: 20px;
+  background-color: beige;
+}
+
+p {
+  font-size: 12px;
 }
 
 .cv-app {
   display: flex;
+  gap: 10px;
 }
 
-.right-side, .left-side {
-  width: 612px;
-  height: 792px;
+.left-side,
+.right-side {
+  word-wrap: break-word;
+  background-color: white;
   padding: 20px;
-  background-color: antiquewhite;
+  height: 800px; 
   border: 1px solid black;
-  box-sizing: border-box;
-}
-
-/* Common styles for all DPIs */
-.left-side {
-  width: 50%;
-  overflow-y: scroll; /* Add vertical scrollbar when needed */
+  overflow-x: scroll;
 }
 
 .right-side {
-  width: 50%;
-  overflow: hidden;
-}
-
-.right-side {
-  overflow: hidden;
+  width: calc(800px / 1.4142); 
 }
 
 .left-side {
-  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 400px;
 }
 
 input[type="text"],
@@ -56,19 +55,18 @@ textarea {
 }
 
 button {
-  background-color: #f44336;
+  background-color: lightslategray;
   color: white;
   border: none;
-  padding: 8px 16px;
+  padding: 4px 8px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 14px;
-  margin: 5px 0;
-  border-radius: 5px;
+  font-size: 12px;
+  margin: 5px 5px 0 0;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #d32f2f;
+  opacity: 0.9;
 }
