@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 function EducationSection({ toggleVisibility, activeSection, educations, setEducations, removeEducation, addEducation }) {
   return (
     <div className="section">
-      <h3 onClick={() => toggleVisibility('educationSection')}>
+      <h2 onClick={() => toggleVisibility('educationSection')}>
         <span className={`toggle-icon ${activeSection === 'educationSection' ? 'expanded' : 'collapsed'}`}>
           {activeSection === 'educationSection' ? '-' : '+'}
         </span>
         Education
-      </h3>
+      </h2>
       <div style={{ display: activeSection === 'educationSection' ? 'block' : 'none' }}>
         {educations.map((education, index) => (
           <div key={index}>

@@ -108,22 +108,7 @@ function App() {
   return (
     <div className="cv-app">
       <div className="left-side">
-        {/* TemplateActions component */}
-        <TemplateActions
-          addTemplate={resetToDefaultTemplate}
-          clearTemplate={() => {
-            // Clear all user input
-            setName('');
-            setAddress('');
-            setEmail('');
-            setPhoneNumber('');
-            setEducations([]);
-            setExperiences([]);
-            setSkills([]);
-            setCertificates([]);
-          }}
-        />
-
+        <div className="left-top">
         {/* PersonalDetailsSection component */}
         <PersonalDetailsSection
           toggleVisibility={toggleVisibility}
@@ -177,25 +162,45 @@ function App() {
           removeCertificate={removeCertificate}
           addCertificate={addCertificate}
         />
+        </div>
+
+        <div className="left-bottom">
+        {/* TemplateActions component */}
+        <TemplateActions
+          addTemplate={resetToDefaultTemplate}
+          clearTemplate={() => {
+            // Clear all user input
+            setName('');
+            setAddress('');
+            setEmail('');
+            setPhoneNumber('');
+            setEducations([]);
+            setExperiences([]);
+            setSkills([]);
+            setCertificates([]);
+          }}
+        />
+        </div>
       </div>
 
       {/* Right side: Display user input */}
       <div className="right-side">
-        <p>{name}</p>
+        <div className="personal">
+        <h2>{name}</h2>
         <p>{address}</p>
         <p>{email}</p>
         <p>{phoneNumber}</p>
+        </div>
 
         {/* Display Education */}
         {educations.length > 0 && (
           <>
-            <h2>Education</h2>
+            <h3>Education</h3>
             {educations.map((education, index) => (
-              <div key={index}>
+              <div className="education" key={index}>
                 <p>{education.school}</p>
                 <p>{education.degree}</p>
-                <p>{education.startDate}</p>
-                <p>{education.endDate}</p>
+                <p>{education.startDate} - {education.endDate}</p>
                 <p>{education.location}</p>
               </div>
             ))}
@@ -205,13 +210,12 @@ function App() {
         {/* Display Experience */}
         {experiences.length > 0 && (
           <>
-            <h2>Experience</h2>
+            <h3>Experience</h3>
             {experiences.map((experience, index) => (
-              <div key={index}>
+              <div className="experience" key={index}>
                 <p>{experience.companyName}</p>
                 <p>{experience.positionTitle}</p>
-                <p>{experience.startDate}</p>
-                <p>{experience.endDate}</p>
+                <p>{experience.startDate} - {experience.endDate}</p>
                 <p>{experience.location}</p>
                 {experience.description && (
                   <div className="description">
@@ -225,27 +229,28 @@ function App() {
 
         {/* Display Skills */}
         {skills.length > 0 && (
-          <>
-            <h2>Skills</h2>
+      
+          <div className="skills">
+            <h3>Skills</h3>
             <ul>
               {skills.map((skill, index) => (
                 <li key={index}>{skill}</li>
               ))}
             </ul>
-          </>
+          </div>
         )}
 
         {/* Display Certificates */}
         {certificates.length > 0 && (
-          <>
-            <h2>Certificates</h2>
+          <div className="certificates">
+            <h3>Certificates</h3>
             {certificates.map((certificate, index) => (
               <div key={index}>
                 <p>{certificate.name}</p>
                 <p>{certificate.date}</p>
               </div>
             ))}
-          </>
+          </div>
         )}
       </div>
     </div>

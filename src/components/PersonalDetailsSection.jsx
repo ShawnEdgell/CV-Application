@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 function PersonalDetailsSection({ toggleVisibility, activeSection, name, address, email, phoneNumber, setName, setAddress, setEmail, setPhoneNumber }) {
   return (
     <div className="section">
-      <h3 onClick={() => toggleVisibility('personalDetails')}>
+      <h2 onClick={() => toggleVisibility('personalDetails')}>
         <span className={`toggle-icon ${activeSection === 'personalDetails' ? 'expanded' : 'collapsed'}`}>
           {activeSection === 'personalDetails' ? '-' : '+'}
         </span>
         Personal Details
-      </h3>
+      </h2>
       <div style={{ display: activeSection === 'personalDetails' ? 'block' : 'none' }}>
         <input
           type="text"

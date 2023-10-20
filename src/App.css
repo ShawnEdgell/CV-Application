@@ -16,8 +16,13 @@ body {
   font-size: 14px;
 }
 
-p, li {
-  font-size: 12px;
+h3 {
+  font-size: 1.2rem;
+  padding: 20px 0 0 40px;
+  margin-top: 5px;
+}
+
+li {
   list-style-type: none;
 }
 
@@ -29,7 +34,6 @@ p, li {
 .left-side,
 .right-side {
   word-wrap: break-word;
-  padding: 20px;
   height: 800px; 
   border: 1px solid #2c3e50;
   overflow-x: scroll;
@@ -37,8 +41,10 @@ p, li {
   transition: box-shadow 0.3s;
 }
 
-.left-side,
-.right-side:hover {
+.left-side {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -53,7 +59,9 @@ p, li {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  height: 100%;
   width: 400px;
+  border-radius: 15px;
   background-color: #34495e; /* Slightly lighter bluish-gray for contrast */
 }
 
@@ -66,11 +74,13 @@ textarea {
   background-color: #2c3e50;
   color: #ecf0f1; /* Text color matching the body */
   border: 1px solid #34495e;
+  margin-top: 5px;
 }
 
 .education-dates,
 .experience-dates {
   display: flex;
+  gap: 5px;
   justify-content: space-between;
 }
 
@@ -82,7 +92,6 @@ button {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 12px;
   border-radius: 4px;
   margin: 5px 5px 0 0;
   cursor: pointer;
@@ -99,7 +108,7 @@ button:hover {
 }
 
 .section h3:hover {
-  background-color: #7f8c8d;
+  background-color: lightblue;
   color: #2c3e50; 
 }
 
@@ -123,8 +132,28 @@ button:hover {
 }
 
 .example-add {
-  background-color: darkgreen;
+  background-color: rgb( 0, 140, 0);
+  font-weight: bold;
 }
 .example-clear {
-  background-color: darkred;
+  background-color: rgb(180, 25, 25);
+  font-weight: bold;
+}
+
+.template-buttons {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.personal {
+  background-color: #41709e;
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+
+}
+
+.education p, .experience p, .certificates p, ul {
+  padding: 0 40px;
 }

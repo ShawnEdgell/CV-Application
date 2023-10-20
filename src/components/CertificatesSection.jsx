@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 function CertificatesSection({ toggleVisibility, activeSection, certificates, setCertificates, removeCertificate, addCertificate }) {
   return (
     <div className="section">
-      <h3 onClick={() => toggleVisibility('certificatesSection')}>
+      <h2 onClick={() => toggleVisibility('certificatesSection')}>
         <span className={`toggle-icon ${activeSection === 'certificatesSection' ? 'expanded' : 'collapsed'}`}>
           {activeSection === 'certificatesSection' ? '-' : '+'}
         </span>
         Certificates
-      </h3>
+      </h2>
       <div style={{ display: activeSection === 'certificatesSection' ? 'block' : 'none' }}>
         {certificates.map((certificate, index) => (
           <div key={index}>

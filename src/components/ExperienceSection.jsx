@@ -10,12 +10,12 @@ function ExperienceSection({
 }) {
   return (
     <div className="section">
-      <h3 onClick={() => toggleVisibility('experienceSection')}>
+      <h2 onClick={() => toggleVisibility('experienceSection')}>
         <span className={`toggle-icon ${activeSection === 'experienceSection' ? 'expanded' : 'collapsed'}`}>
           {activeSection === 'experienceSection' ? '-' : '+'}
         </span>
         Experience
-      </h3>
+      </h2>
       <div style={{ display: activeSection === 'experienceSection' ? 'block' : 'none' }}>
         {experiences.map((experience, index) => (
           <div key={index}>
