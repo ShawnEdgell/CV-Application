@@ -150,32 +150,40 @@ function App() {
 
         
         <div className="section">
-          <h3>Personal Details</h3>
-          <input
+    <h3 onClick={() => toggleVisibility('personalDetails')}>
+        <span className={`toggle-icon ${activeSection === 'personalDetails' ? 'expanded' : 'collapsed'}`}>
+            {activeSection === 'personalDetails' ? '-' : '+'}
+        </span>
+        Personal Details
+    </h3>
+    <div style={{ display: activeSection === 'personalDetails' ? 'block' : 'none' }}>
+        <input
             type="text"
             placeholder="Your Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-          />
-          <input
+        />
+        <input
             type="text"
             placeholder="Address"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
-          />
-          <input
+        />
+        <input
             type="text"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
+        />
+        <input
             type="text"
             placeholder="Phone Number"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-        </div>
+        />
+    </div>
+</div>
+
 
         <div className="section">
   <h3 onClick={() => toggleVisibility('educationSection')}>
@@ -432,11 +440,13 @@ function App() {
 
       {/* Right side: Display user input */}
       <div className="right-side">
-        <p>{name}</p>
-        <p>{address}</p>
-        <p>{email}</p>
-        <p>{phoneNumber}</p>
+    <p>{name}</p>
+    <p>{address}</p>
+    <p>{email}</p>
+    <p>{phoneNumber}</p>
 
+    {educations.length > 0 && (
+      <>
         <h2>Education</h2>
         {educations.map((education, index) => (
           <div key={index}>
@@ -447,7 +457,11 @@ function App() {
             <p>{education.location}</p>
           </div>
         ))}
+      </>
+    )}
 
+    {experiences.length > 0 && (
+      <>
         <h2>Experience</h2>
         {experiences.map((experience, index) => (
           <div key={index}>
@@ -459,28 +473,37 @@ function App() {
             {experience.description && (
               <div className="description">
                 <p>{experience.description}</p>
-                <br></br>
               </div>
             )}
           </div>
         ))}
+      </>
+    )}
 
+    {skills.length > 0 && (
+      <>
         <h2>Skills</h2>
         <ul>
-        {skills.map((skill, index) => (
-        <li key={index}>{skill}</li>
-        ))}
+          {skills.map((skill, index) => (
+            <li key={index}>{skill}</li>
+          ))}
         </ul>
+      </>
+    )}
 
+    {certificates.length > 0 && (
+      <>
         <h2>Certificates</h2>
         {certificates.map((certificate, index) => (
-        <div key={index}>
-        <p>{certificate.name}</p>
-        <p>{certificate.date}</p>
-    </div>
-  ))}
-      </div>
-    </div>
+          <div key={index}>
+            <p>{certificate.name}</p>
+            <p>{certificate.date}</p>
+          </div>
+        ))}
+      </>
+    )}
+</div>
+</div>
   );
 }
 
