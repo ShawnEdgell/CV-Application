@@ -90,7 +90,7 @@ button {
 }
 
 button:hover {
-  background-color: #95a5a6; /* Lighter gray on hover */
+  opacity: 80%;
 }
 
 .section h3 {
@@ -115,4 +115,16 @@ button:hover {
 
 .expanded .toggle-icon {
   transform: rotate(45deg);
+}
+
+.description-textarea {
+  width: 100%; /* Prevent users from changing the width */
+  resize: vertical; /* Allow users to change the height */
+}
+
+.example-add {
+  background-color: darkgreen;
+}
+.example-clear {
+  background-color: darkred;
 }
