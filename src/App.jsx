@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
+
 function App() {
   const defaultTemplate = {
     name: 'John Smith',
@@ -94,6 +95,8 @@ function App() {
     setPhoneNumber(defaultTemplate.phoneNumber);
     setEducations([...defaultTemplate.educations]);
     setExperiences([...defaultTemplate.experiences]);
+    setSkills([...defaultTemplate.skills]);
+    setCertificates([...defaultTemplate.certificates]);
   };
 
   const clearTemplate = () => {
@@ -103,6 +106,8 @@ function App() {
     setPhoneNumber('');
     setEducations([]);
     setExperiences([]);
+    setSkills([]);
+    setCertificates([]);
   };
 
   const addSkill = () => {
@@ -142,6 +147,8 @@ function App() {
           <button onClick={addTemplate}>Add Template</button>
           <button onClick={clearTemplate}>Clear Template</button>
         </div>
+
+        
         <div className="section">
           <h3>Personal Details</h3>
           <input
