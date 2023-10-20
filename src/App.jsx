@@ -26,6 +26,21 @@ function App() {
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
       },
     ],
+    skills: [
+      'JavaScript',
+      'React.js',
+      'Node.js'
+    ],
+    certificates: [
+      {
+        name: 'React Developer Certificate',
+        date: '2015'
+      },
+      {
+        name: 'Full Stack Web Development',
+        date: '2017'
+      }
+    ]
   };
 
   // Initialize state with default template values
@@ -35,6 +50,10 @@ function App() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [educations, setEducations] = useState([]);
   const [experiences, setExperiences] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [certificates, setCertificates] = useState([]);
+  const [activeSection, setActiveSection] = useState('');
+  
 
   useEffect(() => {
     setName(defaultTemplate.name);
@@ -43,6 +62,8 @@ function App() {
     setPhoneNumber(defaultTemplate.phoneNumber);
     setEducations([...defaultTemplate.educations]);
     setExperiences([...defaultTemplate.experiences]);
+    setSkills([...defaultTemplate.skills]);
+    setCertificates([...defaultTemplate.certificates]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -84,6 +105,35 @@ function App() {
     setExperiences([]);
   };
 
+  const addSkill = () => {
+    setSkills([...skills, '']);  // Add an empty string as a placeholder for a new skill.
+  };
+  
+  const removeSkill = (index) => {
+    const updatedSkills = [...skills];
+    updatedSkills.splice(index, 1);
+    setSkills(updatedSkills);
+  };
+  
+  const addCertificate = () => {
+    setCertificates([...certificates, { name: '', date: '' }]);
+  };
+  
+  const removeCertificate = (index) => {
+    const updatedCertificates = [...certificates];
+    updatedCertificates.splice(index, 1);
+    setCertificates(updatedCertificates);
+  };
+
+  // Toggle visibility function
+  const toggleVisibility = (section) => {
+    if (activeSection === section) {
+      setActiveSection('');  // If clicked section is already active, close it.
+    } else {
+      setActiveSection(section);
+    }
+  };
+
   return (
     <div className="cv-app">
       <div className="left-side">
@@ -121,170 +171,256 @@ function App() {
         </div>
 
         <div className="section">
-          <h3>Education</h3>
-          {educations.map((education, index) => (
-            <div key={index}>
-              <input
-                type="text"
-                placeholder="School"
-                value={education.school || ''}
-                onChange={(e) => {
-                  const updatedEducations = [...educations];
-                  updatedEducations[index] = {
-                    ...updatedEducations[index],
-                    school: e.target.value,
-                  };
-                  setEducations(updatedEducations);
-                }}
-              />
-              <input
-                type="text"
-                placeholder="Degree"
-                value={education.degree || ''}
-                onChange={(e) => {
-                  const updatedEducations = [...educations];
-                  updatedEducations[index] = {
-                    ...updatedEducations[index],
-                    degree: e.target.value,
-                  };
-                  setEducations(updatedEducations);
-                }}
-              />
-              <div className="education-dates">
-                <input
-                  type="text"
-                  placeholder="Start Date"
-                  value={education.startDate || ''}
-                  onChange={(e) => {
-                    const updatedEducations = [...educations];
-                    updatedEducations[index] = {
-                      ...updatedEducations[index],
-                      startDate: e.target.value,
-                    };
-                    setEducations(updatedEducations);
-                  }}
-                />
-                <input
-                  type="text"
-                  placeholder="End Date"
-                  value={education.endDate || ''}
-                  onChange={(e) => {
-                    const updatedEducations = [...educations];
-                    updatedEducations[index] = {
-                      ...updatedEducations[index],
-                      endDate: e.target.value,
-                    };
-                    setEducations(updatedEducations);
-                  }}
-                />
-              </div>
-              <input
-                type="text"
-                placeholder="Location"
-                value={education.location || ''}
-                onChange={(e) => {
-                  const updatedEducations = [...educations];
-                  updatedEducations[index] = {
-                    ...updatedEducations[index],
-                    location: e.target.value,
-                  };
-                  setEducations(updatedEducations);
-                }}
-              />
-              <button onClick={() => removeEducation(index)}>Remove</button>
-            </div>
-          ))}
-          <button onClick={() => addEducation()}>Add Education</button>
+  <h3 onClick={() => toggleVisibility('educationSection')}>
+    <span className={`toggle-icon ${activeSection === 'educationSection' ? 'expanded' : 'collapsed'}`}>
+      {activeSection === 'educationSection' ? '-' : '+'}
+    </span>
+    Education
+  </h3>
+  <div style={{ display: activeSection === 'educationSection' ? 'block' : 'none' }}>
+    {educations.map((education, index) => (
+      <div key={index}>
+        <input
+          type="text"
+          placeholder="School"
+          value={education.school || ''}
+          onChange={(e) => {
+            const updatedEducations = [...educations];
+            updatedEducations[index] = {
+              ...updatedEducations[index],
+              school: e.target.value,
+            };
+            setEducations(updatedEducations);
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Degree"
+          value={education.degree || ''}
+          onChange={(e) => {
+            const updatedEducations = [...educations];
+            updatedEducations[index] = {
+              ...updatedEducations[index],
+              degree: e.target.value,
+            };
+            setEducations(updatedEducations);
+          }}
+        />
+        <div className="education-dates">
+          <input
+            type="text"
+            placeholder="Start Date"
+            value={education.startDate || ''}
+            onChange={(e) => {
+              const updatedEducations = [...educations];
+              updatedEducations[index] = {
+                ...updatedEducations[index],
+                startDate: e.target.value,
+              };
+              setEducations(updatedEducations);
+            }}
+          />
+          <input
+            type="text"
+            placeholder="End Date"
+            value={education.endDate || ''}
+            onChange={(e) => {
+              const updatedEducations = [...educations];
+              updatedEducations[index] = {
+                ...updatedEducations[index],
+                endDate: e.target.value,
+              };
+              setEducations(updatedEducations);
+            }}
+          />
         </div>
+        <input
+          type="text"
+          placeholder="Location"
+          value={education.location || ''}
+          onChange={(e) => {
+            const updatedEducations = [...educations];
+            updatedEducations[index] = {
+              ...updatedEducations[index],
+              location: e.target.value,
+            };
+            setEducations(updatedEducations);
+          }}
+        />
+        <button onClick={() => removeEducation(index)}>Remove</button>
+      </div>
+    ))}
+    <button onClick={() => addEducation()}>Add Education</button>
+  </div>
+</div>
 
-        <div className="section">
-          <h3>Experience</h3>
-          {experiences.map((experience, index) => (
-            <div key={index}>
-              <input
-                type="text"
-                placeholder="Company Name"
-                value={experience.companyName || ''}
-                onChange={(e) => {
-                  const updatedExperiences = [...experiences];
-                  updatedExperiences[index] = {
-                    ...updatedExperiences[index],
-                    companyName: e.target.value,
-                  };
-                  setExperiences(updatedExperiences);
-                }}
-              />
-              <input
-                type="text"
-                placeholder="Position Title"
-                value={experience.positionTitle || ''}
-                onChange={(e) => {
-                  const updatedExperiences = [...experiences];
-                  updatedExperiences[index] = {
-                    ...updatedExperiences[index],
-                    positionTitle: e.target.value,
-                  };
-                  setExperiences(updatedExperiences);
-                }}
-              />
-              <div className="experience-dates">
-                <input
-                  type="text"
-                  placeholder="Start Date"
-                  value={experience.startDate || ''}
-                  onChange={(e) => {
-                    const updatedExperiences = [...experiences];
-                    updatedExperiences[index] = {
-                      ...updatedExperiences[index],
-                      startDate: e.target.value,
-                    };
-                    setExperiences(updatedExperiences);
-                  }}
-                />
-                <input
-                  type="text"
-                  placeholder="End Date"
-                  value={experience.endDate || ''}
-                  onChange={(e) => {
-                    const updatedExperiences = [...experiences];
-                    updatedExperiences[index] = {
-                      ...updatedExperiences[index],
-                      endDate: e.target.value,
-                    };
-                    setExperiences(updatedExperiences);
-                  }}
-                />
-              </div>
-              <input
-                type="text"
-                placeholder="Location"
-                value={experience.location || ''}
-                onChange={(e) => {
-                  const updatedExperiences = [...experiences];
-                  updatedExperiences[index] = {
-                    ...updatedExperiences[index],
-                    location: e.target.value,
-                  };
-                  setExperiences(updatedExperiences);
-                }}
-              />
-              <textarea
-                placeholder="Description (optional)"
-                value={experience.description || ''}
-                onChange={(e) => {
-                  const updatedExperiences = [...experiences];
-                  updatedExperiences[index] = {
-                    ...updatedExperiences[index],
-                    description: e.target.value,
-                  };
-                  setExperiences(updatedExperiences);
-                }}
-              />
-              <button onClick={() => removeExperience(index)}>Remove</button>
-            </div>
-          ))}
-          <button onClick={() => addExperience()}>Add Experience</button>
+
+
+<div className="section">
+  <h3 onClick={() => toggleVisibility('experienceSection')}>
+    <span className={`toggle-icon ${activeSection === 'experienceSection' ? 'expanded' : 'collapsed'}`}>
+      {activeSection === 'experienceSection' ? '-' : '+'}
+    </span>
+    Experience
+  </h3>
+  <div style={{ display: activeSection === 'experienceSection' ? 'block' : 'none' }}>
+    {experiences.map((experience, index) => (
+      <div key={index}>
+        <input
+          type="text"
+          placeholder="Company Name"
+          value={experience.companyName || ''}
+          onChange={(e) => {
+            const updatedExperiences = [...experiences];
+            updatedExperiences[index] = {
+              ...updatedExperiences[index],
+              companyName: e.target.value,
+            };
+            setExperiences(updatedExperiences);
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Position Title"
+          value={experience.positionTitle || ''}
+          onChange={(e) => {
+            const updatedExperiences = [...experiences];
+            updatedExperiences[index] = {
+              ...updatedExperiences[index],
+              positionTitle: e.target.value,
+            };
+            setExperiences(updatedExperiences);
+          }}
+        />
+        <div className="experience-dates">
+          <input
+            type="text"
+            placeholder="Start Date"
+            value={experience.startDate || ''}
+            onChange={(e) => {
+              const updatedExperiences = [...experiences];
+              updatedExperiences[index] = {
+                ...updatedExperiences[index],
+                startDate: e.target.value,
+              };
+              setExperiences(updatedExperiences);
+            }}
+          />
+          <input
+            type="text"
+            placeholder="End Date"
+            value={experience.endDate || ''}
+            onChange={(e) => {
+              const updatedExperiences = [...experiences];
+              updatedExperiences[index] = {
+                ...updatedExperiences[index],
+                endDate: e.target.value,
+              };
+              setExperiences(updatedExperiences);
+            }}
+          />
         </div>
+        <input
+          type="text"
+          placeholder="Location"
+          value={experience.location || ''}
+          onChange={(e) => {
+            const updatedExperiences = [...experiences];
+            updatedExperiences[index] = {
+              ...updatedExperiences[index],
+              location: e.target.value,
+            };
+            setExperiences(updatedExperiences);
+          }}
+        />
+        <textarea
+          placeholder="Description (optional)"
+          value={experience.description || ''}
+          onChange={(e) => {
+            const updatedExperiences = [...experiences];
+            updatedExperiences[index] = {
+              ...updatedExperiences[index],
+              description: e.target.value,
+            };
+            setExperiences(updatedExperiences);
+          }}
+        />
+        <button onClick={() => removeExperience(index)}>Remove</button>
+      </div>
+    ))}
+    <button onClick={() => addExperience()}>Add Experience</button>
+  </div>
+</div>
+
+
+
+<div className="section">
+  <h3 onClick={() => toggleVisibility('skillsSection')}>
+    <span className={`toggle-icon ${activeSection === 'skillsSection' ? 'expanded' : 'collapsed'}`}>
+      {activeSection === 'skillsSection' ? '-' : '+'}
+    </span>
+    Skills
+  </h3>
+  <div style={{ display: activeSection === 'skillsSection' ? 'block' : 'none' }}>
+    {skills.map((skill, index) => (
+      <div key={index}>
+        <input
+          type="text"
+          placeholder="Skill"
+          value={skill}
+          onChange={(e) => {
+            const updatedSkills = [...skills];
+            updatedSkills[index] = e.target.value;
+            setSkills(updatedSkills);
+          }}
+        />
+        <button onClick={() => removeSkill(index)}>Remove</button>
+      </div>
+    ))}
+    <button onClick={addSkill}>Add Skill</button>
+  </div>
+</div>
+
+
+<div className="section">
+  <h3 onClick={() => toggleVisibility('certificatesSection')}>
+    <span className={`toggle-icon ${activeSection === 'certificatesSection' ? 'expanded' : 'collapsed'}`}>
+      {activeSection === 'certificatesSection' ? '-' : '+'}
+    </span>
+    Certificates
+  </h3>
+  <div style={{ display: activeSection === 'certificatesSection' ? 'block' : 'none' }}>
+    {certificates.map((certificate, index) => (
+      <div key={index}>
+        <input
+          type="text"
+          placeholder="Certificate Name"
+          value={certificate.name}
+          onChange={(e) => {
+            const updatedCertificates = [...certificates];
+            updatedCertificates[index].name = e.target.value;
+            setCertificates(updatedCertificates);
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Date"
+          value={certificate.date}
+          onChange={(e) => {
+            const updatedCertificates = [...certificates];
+            updatedCertificates[index].date = e.target.value;
+            setCertificates(updatedCertificates);
+          }}
+        />
+        <button onClick={() => removeCertificate(index)}>Remove</button>
+      </div>
+    ))}
+    <button onClick={addCertificate}>Add Certificate</button>
+  </div>
+</div>
+
+
+
       </div>
 
       {/* Right side: Display user input */}
@@ -321,6 +457,21 @@ function App() {
             )}
           </div>
         ))}
+
+        <h2>Skills</h2>
+        <ul>
+        {skills.map((skill, index) => (
+        <li key={index}>{skill}</li>
+        ))}
+        </ul>
+
+        <h2>Certificates</h2>
+        {certificates.map((certificate, index) => (
+        <div key={index}>
+        <p>{certificate.name}</p>
+        <p>{certificate.date}</p>
+    </div>
+  ))}
       </div>
     </div>
   );
