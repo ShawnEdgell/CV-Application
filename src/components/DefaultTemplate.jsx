@@ -1,8 +1,8 @@
-// DefaultTemplate.jsx
 import { useMemo } from 'react';
 
 const DefaultTemplate = () => {
   return useMemo(() => ({
+    aboutMe: 'I am a passionate software engineer with expertise in web development technologies. My goal is to create meaningful and user-friendly web applications that solve real-world problems.',
     name: 'John Smith',
     address: '123 Example Street',
     email: 'john@example.com',
@@ -38,7 +38,6 @@ const DefaultTemplate = () => {
       },
     ],
   }), []);
-
 };
 
 export default DefaultTemplate;

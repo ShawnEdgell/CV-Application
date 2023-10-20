@@ -8,6 +8,7 @@ import ExperienceSection from './components/ExperienceSection';
 import SkillsSection from './components/SkillsSection';
 import CertificatesSection from './components/CertificatesSection';
 import DefaultTemplate from './components/DefaultTemplate';
+import AboutMe from './components/AboutMe';
 
 function App() {
   // Initialize state with default template values using the DefaultTemplate component
@@ -23,9 +24,10 @@ function App() {
     experiences: defaultExperiences,
     skills: defaultSkills,
     certificates: defaultCertificates,
+    aboutMe: defaultAboutMe, // Add this line to destructure the aboutMe field
   } = defaultTemplate;
 
-  // Initialize state for user input
+  // Now you can use the destructured variables without re-declaring defaultTemplate
   const [name, setName] = useState(defaultName);
   const [address, setAddress] = useState(defaultAddress);
   const [email, setEmail] = useState(defaultEmail);
@@ -34,6 +36,7 @@ function App() {
   const [experiences, setExperiences] = useState([...defaultExperiences]);
   const [skills, setSkills] = useState([...defaultSkills]);
   const [certificates, setCertificates] = useState([...defaultCertificates]);
+  const [description, setDescription] = useState(defaultAboutMe); // Initialize description with defaultAboutMe
   const [activeSection, setActiveSection] = useState('');
 
   // Reset user input to default template values
@@ -46,6 +49,7 @@ function App() {
     setExperiences([...defaultExperiences]);
     setSkills([...defaultSkills]);
     setCertificates([...defaultCertificates]);
+    setDescription(defaultAboutMe); // Reset description to defaultAboutMe
   };
 
   // Add an empty education section
@@ -109,6 +113,13 @@ function App() {
     <div className="cv-app">
       <div className="left-side">
         <div className="left-top">
+        <AboutMe
+        toggleVisibility={toggleVisibility}
+        activeSection={activeSection}
+        description={description}
+        setDescription={setDescription}
+      />
+
         {/* PersonalDetailsSection component */}
         <PersonalDetailsSection
           toggleVisibility={toggleVisibility}
@@ -178,19 +189,29 @@ function App() {
             setExperiences([]);
             setSkills([]);
             setCertificates([]);
+            setDescription(''); // Clear the About Me section
           }}
         />
         </div>
       </div>
 
-      {/* Right side: Display user input */}
       <div className="right-side">
-        <div className="personal">
-        <h2>{name}</h2>
+      {name || address || email || phoneNumber ? (
+        <div className="personal-name">
+        <h1>{name}</h1>
+        <div className="personal-info">
         <p>{address}</p>
         <p>{email}</p>
         <p>{phoneNumber}</p>
         </div>
+        </div>
+        ) : null}
+
+        {/* Display Description (About Me) */}
+        <div className={`user-information ${activeSection === 'aboutMeSection' ? 'active' : ''}`}>
+          <p>{description}</p>
+        </div>
+
 
         {/* Display Education */}
         {educations.length > 0 && (
