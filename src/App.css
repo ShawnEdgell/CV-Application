@@ -35,32 +35,33 @@ li {
   gap: 10px;
 }
 
-.left-side,
 .right-side {
   word-wrap: break-word;
   height: 1200px; 
-  border: 1px solid #2c3e50;
-}
-
-.left-side {
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.right-side {
   width: calc(1200px / 1.4142);
   background-color: white;
   color: black;
 }
 
 .left-side {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  overflow-y: auto;
+  height: 100%;
+  max-height: 1200px;
+  word-wrap: break-word;
   color: #ecf0f1; /* Light font color */
   display: flex;
   flex-direction: column;
-  height: 100%;
   width: 400px;
   background-color: #34495e;
+}
+
+.left-top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 input[type="text"],
@@ -101,13 +102,13 @@ button:hover {
 }
 
 .section h3 {
-  cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
-.section h3:hover {
+.section h2:hover {
   background-color: lightblue;
-  color: #2c3e50; 
+  color: #2c3e50;
+  cursor: pointer;
 }
 
 .toggle-icon {

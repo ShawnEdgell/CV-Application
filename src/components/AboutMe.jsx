@@ -14,6 +14,10 @@ function AboutMe({ toggleVisibility, activeSection, description, setDescription 
           placeholder="Write a brief about yourself..."
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          style={{
+            width: '100%', // Set a specific width for the textarea
+            resize: 'vertical', // Allow vertical resizing
+          }}
         ></textarea>
       </div>
     </div>

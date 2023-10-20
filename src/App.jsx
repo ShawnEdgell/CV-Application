@@ -112,6 +112,7 @@ function App() {
   return (
     <div className="cv-app">
       <div className="left-side">
+      <div className="left-content">
         <div className="left-top">
         <AboutMe
         toggleVisibility={toggleVisibility}
@@ -193,6 +194,7 @@ function App() {
           }}
         />
         </div>
+      </div>
       </div>
 
       <div className="right-side">
