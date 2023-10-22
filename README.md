@@ -1,4 +1,4 @@
-# React + Vite + Firebase
+# React + Vite + Firebase (WIP)
 
 https://cv-application-8760c.web.app
 
